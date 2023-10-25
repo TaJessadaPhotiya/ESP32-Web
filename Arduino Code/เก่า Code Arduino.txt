@@ -1,0 +1,81 @@
+const int BUTTON1 = 4; // DS Sensor            = Pin 4 with Button 1
+const int BUTTON2 = 5; // Ultrasonic Sensor 1  = Pin 5 with Button 2
+const int BUTTON3 = 6; // PH Sensor 1 UP       = Pin 6 with Button 3
+const int BUTTON4 = 7; // PH Sensor 2 DOWN      = Pin 7 with Button 4
+
+const int LED1 = 8;    // Initialize Pin 8 for LED 1
+const int LED2 = 9;    // Initialize Pin 9 for LED 2
+const int LED3 = 10;   // Initialize Pin 10 for LED 3
+const int LED4 = 11;   // Initialize Pin 11 for LED 4
+
+const int LED_DS = 13;    // Initialize Pin 13 for LED_DS
+const int LED_ULTRASONIC = 12;    // Initialize Pin 12 for LED_ULTRASONIC
+const int LED_PH_UP = 3;   // Initialize Pin 3 for LED_PH_UP
+const int LED_PH_DOWN = 2;   // Initialize Pin 2 for LED_PH_DOWN
+
+int BUTTONstate1 = 0;  // To read the state of Button 1
+int BUTTONstate2 = 0;  // To read the state of Button 2
+int BUTTONstate3 = 0;  // To read the state of Button 3
+int BUTTONstate4 = 0;  // To read the state of Button 4
+
+void setup() {
+  pinMode(BUTTON1, INPUT); // Define Button 1 as an input pin
+  pinMode(BUTTON2, INPUT); // Define Button 2 as an input pin
+  pinMode(BUTTON3, INPUT); // Define Button 3 as an input pin
+  pinMode(BUTTON4, INPUT); // Define Button 4 as an input pin
+  pinMode(LED1, OUTPUT);   // Define LED 1 as an output pin
+  pinMode(LED2, OUTPUT);   // Define LED 2 as an output pin
+  pinMode(LED3, OUTPUT);   // Define LED 3 as an output pin
+  pinMode(LED4, OUTPUT);   // Define LED 4 as an output pin
+  
+  pinMode(LED_DS, OUTPUT);    
+  pinMode(LED_ULTRASONIC, OUTPUT);   
+  pinMode(LED_PH_UP, OUTPUT);   
+  pinMode(LED_PH_DOWN, OUTPUT);  
+  
+}
+
+void loop() {
+//=========================================================================<< DS Sensor >>==========================================================================
+  BUTTONstate1 = digitalRead(BUTTON1); // Read Button 1 state
+  if (BUTTONstate1 == HIGH) {
+    digitalWrite(LED1, LOW); // Turn LED 1 ON
+    digitalWrite(LED_DS, HIGH); 
+  } else {
+    digitalWrite(LED1, HIGH); // Turn LED 1 OFF
+    digitalWrite(LED_DS, LOW); 
+  }
+//======================================================================<< Ultrasonic Sensor 1 >>===================================================================
+  BUTTONstate2 = digitalRead(BUTTON2); // Read Button 2 state
+  if (BUTTONstate2 == HIGH) {
+    digitalWrite(LED2, LOW); // Turn LED 2 OFF
+    digitalWrite(LED_ULTRASONIC, HIGH); 
+  } else {
+    digitalWrite(LED2, HIGH); // Turn LED 2 ON
+    digitalWrite(LED_ULTRASONIC, LOW); 
+  }
+//==========================================================================<< PH Sensor 1 UP >>===================================================================
+  BUTTONstate3 = digitalRead(BUTTON3); // Read Button 3 state
+  if (BUTTONstate3 == HIGH) {
+    digitalWrite(LED_PH_UP, HIGH);
+    digitalWrite(LED3, LOW); // Turn LED 3 OFF
+    delay(1000);
+    digitalWrite(LED3, HIGH);
+    delay(20000); 
+  } else {
+    digitalWrite(LED3, HIGH); // Turn LED 3 ON
+    digitalWrite(LED_PH_UP, LOW); 
+  }
+//==========================================================================<< PH Sensor 2 DOW >>===================================================================
+    BUTTONstate4 = digitalRead(BUTTON4); // Read Button 3 state
+  if (BUTTONstate4 == HIGH) {
+    digitalWrite(LED_PH_DOWN, HIGH);
+    digitalWrite(LED4, LOW); // Turn LED 4 OFF
+    delay(1000);
+    digitalWrite(LED4, HIGH);
+    delay(20000); 
+  } else {
+    digitalWrite(LED4, HIGH); // Turn LED 4 ON
+    digitalWrite(LED_PH_DOWN, LOW); 
+  }
+}
